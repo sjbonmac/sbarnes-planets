@@ -1,6 +1,8 @@
 package me.sbarnes.planets.dataLayer.network
 
-import me.sbarnes.planets.dataLayer.planetsApi.PlanetsResponse
+import me.sbarnes.planets.dataLayer.network.planetsApi.Film
+import me.sbarnes.planets.dataLayer.network.planetsApi.PlanetsResponse
+import me.sbarnes.planets.dataLayer.network.planetsApi.Person
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -11,8 +13,14 @@ import retrofit2.http.Path
 interface PlanetsApi {
 
     @GET("https:https://swapi.dev/api/planets/")
-    fun getPlanets(): Call<PlanetsResponse>
+    suspend fun getPlanets(): Call<PlanetsResponse>
 
     @GET("{path}")
-    fun getNextPlanets(@Path("path") path: String): Call<PlanetsResponse>
+    suspend fun getNextPlanets(@Path("path") path: String): Call<PlanetsResponse>
+
+    @GET("{path}")
+    suspend fun getPerson(@Path("path") path: String): Call<Person>
+    @GET("{path}")
+    suspend fun getFilm(@Path("path") path: String): Call<Film>
+
 }

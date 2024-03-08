@@ -12,9 +12,14 @@ composeBom = "2023.08.00"
 retrofit2 = "2.9.0"
 converter = "1.0.0"
 roomVersion = "2.6.1"
-hilt = "2.44"
+hilt = "2.51"
+ksp = "1.9.0-1.0.12"
+timber = "5.0.1"
+json = "1.6.3"
 
 [libraries]
+
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber"}
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -24,14 +29,18 @@ androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecyc
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 
+
+
 retrofit2 = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit2"}
 retrofit2-ktx-serialisation = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "converter"}
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomVersion"}
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomVersion" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref ="roomVersion"}
 
-google-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
-google-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+
+json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "json"}
 
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlin-coroutines" }
 
@@ -43,8 +52,15 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 
+
+hilt-test = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
+hilt-compiler-test = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+hilt-android-test = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
+hilt-compiler-android-test = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+
 [plugins]
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-
+devtoolsKsp = { id = "com.google.devtools.ksp", version.ref = "ksp"}
+kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin"}

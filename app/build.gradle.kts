@@ -1,7 +1,9 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    //alias(libs.plugins.hilt)
+    alias(libs.plugins.devtoolsKsp)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlinxSerialization)
 }
 
 android {
@@ -39,6 +41,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -53,12 +56,10 @@ android {
 dependencies {
 
     implementation(libs.room.runtime)
-    annotationProcessor(libs.room.compiler)
+    ksp(libs.room.compiler)
     implementation(libs.room.ktx)
-
-    implementation(libs.google.hilt.android)
-    annotationProcessor(libs.google.hilt.compiler)
-
+    implementation(libs.hilt)
+    ksp(libs.hilt.compiler)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -70,11 +71,18 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.retrofit2)
     implementation(libs.retrofit2.ktx.serialisation)
+    implementation(libs.json)
+    implementation(libs.timber)
     testImplementation(libs.junit)
+    testImplementation(libs.hilt.test)
+    kspTest(libs.hilt.compiler.test)
+    androidTestImplementation(libs.hilt.android.test)
+    kspAndroidTest(libs.hilt.compiler.android.test)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
 }
